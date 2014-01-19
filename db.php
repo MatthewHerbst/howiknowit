@@ -26,13 +26,15 @@ function insertIntoCollection($table, $document) {
 	$collection = $db->$table;
 	
 	//Perform the insert
-	$options = array("w" => 1);
-	$result = $collection->insert($document, $options);
+	//$options = array("w" => 1);
+	//resut =
+	$collection->insert($document);//, $options);
 
 	//TODO: check for error
 
 	//Return the generated ObjectId
-	return $result['upserted'];
+	//return $result['upserted'];
+	return $document['_id'];
 }
 
 /*
@@ -135,6 +137,24 @@ function inBlacklist($word) {
 	$cursor = queryCollection("blacklist-words", array('word' => $word));
 
 	return $cursor->count() > 0;
+}
+
+/*
+	Given  media_id, returns the text to be displayed with mark-up (special words have a link)
+*/
+function howiknowit($media_id) {
+	//Get a list of words for this document
+	$words = array();
+	$cursor = queryCollection();
+	foreach($cursor as $doc) {
+		array_push($words, $doc);
+	}
+
+	//Get the content of the media item
+	$cursor = queryCollection("media", array('media_id' => $media_id));
+
+	//Go through the list of words
+
 }
 
 ?>

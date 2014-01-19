@@ -26,7 +26,7 @@ connectDB();
 
 	<!-- List of content that the user has submitted -->
 	<div id='mydocs'>
-		<h3>My Media</h3> <br />
+		<h3>My Media</h3>
 		<?php
 			$media = getMedia();
 			if(count($media) > 0) {

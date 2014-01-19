@@ -44,7 +44,7 @@ parseText($media_id, $content);
 		</div>
 		<div id='text'>
 			<?php
-				echo howiknowit();
+				echo howiknowit($media_id);
 			?>
 		</div>
 	</div>
