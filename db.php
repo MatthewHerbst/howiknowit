@@ -133,6 +133,10 @@ function parseWords($media_id, $paragraph_id, $paragraph) {
 	Checks to see if a given word is in the blacklist (the list of words deemed unimportant)
 */
 function inBlacklist($word) {
+	if($word = "") {
+		return false;
+	}
+
 	//Gets a cursor to the results of a query for the word
 	$cursor = queryCollection("blacklist-words", array('word' => $word));
 
