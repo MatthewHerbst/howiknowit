@@ -28,7 +28,7 @@ connectDB();
 	<div id='mydocs'>
 		<?php
 			$media = getMedia();
-			if(count($media) > 0) {}
+			if(count($media) > 0) {
 				foreach($media as $title) {
 					echo "<p class='media'>".$title."</p><br />";
 				} 
