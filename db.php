@@ -105,12 +105,12 @@ function parseText($media_id, $text) {
 */
 function parseWords($media_id, $paragraph_id, $paragraph) {
 	//Remove punctuation, then fix for extra white spaces
-	echo "Before remove:            " . $paragraph;
+	//echo "Before remove:            " . $paragraph;
 
 	$paragraph = preg_replace("/[^\w]+/", " ", $paragraph);
 	//$paragraph = preg_replace("/\s{2,}/g", " ", $paragraph);
 
-	echo "After remove:             " . $paragraph;
+	//echo "After remove:             " . $paragraph;
 
 	//Generate an array of all the words
 	$words = explode(" ", $paragraph);
@@ -165,8 +165,9 @@ function howiknowit($media_id) {
 	//Get the content of the media item
 	$cursor = queryCollection("media", array('media_id' => $media_id));
 
+	//TODO: possible risk of replacing text in one of the html tags?
 	//Go through the list of words
-
+	
 }
 
 ?>
