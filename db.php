@@ -63,11 +63,10 @@ function getMedia() {
 	$cursor = $db->$collection->find();
 
 	//Iterate through all the items the cursor has access to
-	foreach($cursor as $item)
+	foreach($cursor as $doc)
 	{
 		//Put that item into the media array
-		$title = "title";
-    	array_push($media, $item->$title);
+    	array_push($media, $doc['title']);
 	}
 
 	return $media;
