@@ -200,7 +200,7 @@ function howiknowit($media_id) {
 	//TODO: possible risk of replacing text in one of the html tags?
 	//Go through the list of words
 	foreach($words as $word) {
-		$link = "<a href='word.php?word=" . $word . "&media_id=" . $media_id . "' target='_blank'>" . $word . "</a>";
+		$link = "<a href='word.php?word=" . $word['word'] . "&media_id=" . $media_id . "' target='_blank'>" . $word['word'] . "</a>";
 		//Replace that word with a hyper-linked version of it to word.php
 		str_replace($word, $link, $content);
 	}
