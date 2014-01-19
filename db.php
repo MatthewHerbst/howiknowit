@@ -79,7 +79,7 @@ function getMedia() {
 */
 function parseText($media_id, $text) {
 	//Generate the paragraphs
-	$paragraphs = explode("\n\n", $text);
+	$paragraphs = explode("\r\n\r\n", $text);
 
 	//Add each paragraph to the paragraph collection
 	for($i = 0; $i < count($paragraphs); ++$i) {
