@@ -20,7 +20,8 @@ $doc = array(
 //Insert the media entry and get it's ObjectId
 $media_id = insertIntoCollection("media", $doc);
 
-
+//Parse the text to pull the paragraphs and the individual words
+parseText($media_id, $content);
 
 ?>
 
@@ -29,7 +30,6 @@ $media_id = insertIntoCollection("media", $doc);
 <head>
 	<meta charset="utf-8">
 	<title>How-I-Know-It: Smart Read!</title>
-	<script type='text/javascript' src='js/parseText.js'> </script>
 </head>
 <body>
 	<!-- Nav bar -->

@@ -1,6 +1,4 @@
 <?php
-echo phpinfo();
-
 $DB = "howiknowit";
 $db = "";
 
