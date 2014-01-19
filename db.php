@@ -164,10 +164,36 @@ function howiknowit($media_id) {
 
 	//Get the content of the media item
 	$cursor = queryCollection("media", array('media_id' => $media_id));
-
+	$content = iterator_to_array($cursor);
+	
 	//TODO: possible risk of replacing text in one of the html tags?
 	//Go through the list of words
-	
+	foreach($words as $word) {
+		$link = "<a href='word.php?word='" . $word . "&media_id=" . $media_id;
+		//Replace that word with a hyper-linked version of it to word.php
+		str_replace($word, $link, $content);
+	}
+
+	return $content;
+}
+
+/*
+	Given a word, returns a list of all media where the word is found
+*/
+function whereIsThisWord($word, $media_id) {
+	//Store the location of all the words
+	$locations = array();
+
+	//Find all instances of this word in the database
+	$cursor = queryCollection("words", array('word' => $word));
+
+	//Go through each result
+	foreach($cursor as $document) {
+		//Save it
+		array_push($locations, $document);
+	}
+
+	return locations;
 }
 
 ?>

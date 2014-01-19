@@ -13,6 +13,13 @@ connectDB();
 	<title>How-I-Know-It</title>
 </head>
 <body>
+	<p>How-I-Know-It is a service meant to be integrated with an online reading platform. Do you ever find yourself halfway through Dante's Inferno,
+	wondering how you know the name of the person he just found in the depths of Hell? Sure, any platform today gives you the ability the click the
+	word and will then promptly show you the Wikipedia entry, but that's not really what you're looking for, is it? What you want to know is where
+	and when you've come across this person's name in the past. This is the purpose of How-I-Know-It. Currently, you can demo the technology by
+	entering a story. The story is then displayed to you with special words giving you the ability to see where they have come up in other stories.</p>
+	<br />
+	
 	<!-- Form for submitting new content which the user can then read -->
 	<div id='form'>
 		<form action='reading.php' method='post' >
