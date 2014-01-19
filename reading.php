@@ -20,6 +20,8 @@ $doc = array(
 //Insert the media entry and get it's ObjectId
 $media_id = insertIntoCollection("media", $doc);
 
+
+
 ?>
 
 !DOCTYPE html>
@@ -42,7 +44,7 @@ $media_id = insertIntoCollection("media", $doc);
 		</div>
 		<div id='text'>
 			<?php
-				//postContent();
+				echo howiknowit();
 			?>
 		</div>
 	</div>

@@ -37,11 +37,16 @@ function insertIntoCollection($table, $document) {
 
 /*
 	Queries the specified collection/table for documents using $q as the query
+	Returns a cursor to the query results
 */
 function queryCollection($collection, $q) {
 	global $db;
 
 	$cursor = $db->$collection->find($q);
+
+	return $cursor;
+
+	//TODO: error check
 }
 
 /*
@@ -105,8 +110,30 @@ function parseWords($media_id, $paragraph_id, $paragraph) {
 
 	//Go through all the words
 	for($i = 0; $i < count($words); ++$i) {
-		
+
+		//If the cursor returned no results
+		if(!inBlacklist($words[$i])) {
+			//Create the document for the word
+			$document = array(
+								"media_id" 		=> $media_id,
+								"paragraph_id"	=> $paragraph_id,
+								"word"			=> $words[$i]
+							 );
+
+			//Insert it into the words collection
+			insertIntoCollection("words", $document);
+		} //Else do nothing - we don't care about the word
 	}
+}
+
+/*
+	Checks to see if a given word is in the blacklist (the list of words deemed unimportant)
+*/
+function inBlacklist($word) {
+	//Gets a cursor to the results of a query for the word
+	$cursor = queryCollection("blacklist-words", array('word' => $word));
+
+	return $cursor->count() > 0;
 }
 
 ?>
