@@ -1,4 +1,5 @@
 <?php
+echo "working";
 //Handle database connections
 include "db.php";
 
