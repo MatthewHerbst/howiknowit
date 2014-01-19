@@ -59,13 +59,15 @@ function getMedia() {
 	$media = array();
 
 	//Get a cursor to the documents in the media collection
-	$cursor = $db->'media'->find();
+	$collection = "media";
+	$cursor = $db->$collection->find();
 
 	//Iterate through all the items the cursor has access to
 	foreach($cursor as $item)
 	{
 		//Put that item into the media array
-    	array_push($media, $item->'title');
+		$title = "title";
+    	array_push($media, $item->$title);
 	}
 
 	return $media;
@@ -86,7 +88,7 @@ function parseText($media_id, $text) {
 		$document = array(
 							"media_id" => $media_id,
 							"location" => $i,
-							"text"	   => $paragraphs[$i];
+							"text"	   => $paragraphs[$i]
 						 );
 
 		//Insert it into the paragraphs collection
