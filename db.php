@@ -136,4 +136,3 @@ function inBlacklist($word) {
 	return $cursor->count() > 0;
 }
 
-?>
