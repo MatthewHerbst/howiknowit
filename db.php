@@ -107,7 +107,7 @@ function parseWords($media_id, $paragraph_id, $paragraph) {
 	//Remove punctuation, then fix for extra white spaces
 	echo "Before remove:            " . $paragraph;
 
-	$paragraph = preg_replace("/[^\w]+/", "", $paragraph);
+	$paragraph = preg_replace("/[^\w]+/", " ", $paragraph);
 	//$paragraph = preg_replace("/\s{2,}/g", " ", $paragraph);
 
 	echo "After remove:             " . $paragraph;
