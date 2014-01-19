@@ -75,6 +75,30 @@ function getMedia() {
 }
 
 /*
+	Returns the title of the specified media_id
+*/
+function getTitle($media_id) {
+	$collection = "media";
+	$document = $db->$collection->findOne(array('media_id' => $media_id));
+
+	//TODO: error check (see if $document is NULL)
+
+	return $document['title'];
+}
+
+/*
+	Returns the paragraph of the specified paragraph_id
+*/
+function getParagraph($paragraph_id) {
+	$collection = "paragraphs";
+	$document = $db->$collection->findOne(array('paragraph_id' => $paragraph_id));
+
+	//TODO: error check (see if $document is NULL)
+
+	return $document['text'];
+}
+
+/*
 	Parses a large block of text
 	Breaks the block in paragraphs, storing each in the database
 	Further, looks at each word in each paragraph and keep track of important words
@@ -169,7 +193,7 @@ function howiknowit($media_id) {
 	//TODO: possible risk of replacing text in one of the html tags?
 	//Go through the list of words
 	foreach($words as $word) {
-		$link = "<a href='word.php?word='" . $word . "&media_id=" . $media_id;
+		$link = "<a href='word.php?word=" . $word . "&media_id=" . $media_id . "' target='_blank'>" . $word . "</a>";
 		//Replace that word with a hyper-linked version of it to word.php
 		str_replace($word, $link, $content);
 	}
