@@ -105,19 +105,19 @@ function parseText($media_id, $text) {
 */
 function parseWords($media_id, $paragraph_id, $paragraph) {
 	//Remove punctuation, then fix for extra white spaces
-	echo $paragraph . '\n';
+	echo "Before remove:            " . $paragraph;
 
 	$paragraph = preg_replace("/[^\w]+/", "", $paragraph);
 	$paragraph = preg_replace("/\s{2,}/g", " ", $paragraph);
 
-	echo '\n' . $paragraph;
+	echo "After remove:             " . $paragraph;
 
 	//Generate an array of all the words
 	$words = explode(" ", $paragraph);
 
-	foreach($words as $word) {
+	/*foreach($words as $word) {
 		echo $word . "; ";
-	}
+	}*/
 
 	//Go through all the words
 	foreach($words as $word) {
