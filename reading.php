@@ -24,7 +24,7 @@ $media_id = insertIntoCollection("media", $doc);
 
 ?>
 
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
