@@ -112,15 +112,14 @@ function parseWords($media_id, $paragraph_id, $paragraph) {
 	$words = explode(" ", $paragraph);
 
 	//Go through all the words
-	for($i = 0; $i < count($words); ++$i) {
-
-		//If the cursor returned no results
-		if(!inBlacklist($words[$i])) {
+	foreach($words as $word) {
+		//If the cursor into the blacklist returned no results
+		if(!inBlacklist($word)) {
 			//Create the document for the word
 			$document = array(
 								"media_id" 		=> $media_id,
 								"paragraph_id"	=> $paragraph_id,
-								"word"			=> $words[$i]
+								"word"			=> $word
 							 );
 
 			//Insert it into the words collection
@@ -133,8 +132,9 @@ function parseWords($media_id, $paragraph_id, $paragraph) {
 	Checks to see if a given word is in the blacklist (the list of words deemed unimportant)
 */
 function inBlacklist($word) {
+	//TODO: empty strings shouldn't be being picked up to begin with
 	if($word = "") {
-		return false;
+		return true;
 	}
 
 	//Gets a cursor to the results of a query for the word
