@@ -78,6 +78,8 @@ function getMedia() {
 	Returns the title of the specified media_id
 */
 function getTitle($media_id) {
+	global $db;
+
 	$collection = "media";
 	$document = $db->$collection->findOne(array('media_id' => $media_id));
 
@@ -90,6 +92,8 @@ function getTitle($media_id) {
 	Returns the paragraph of the specified paragraph_id
 */
 function getParagraph($paragraph_id) {
+	global $db;
+
 	$collection = "paragraphs";
 	$document = $db->$collection->findOne(array('paragraph_id' => $paragraph_id));
 
@@ -179,6 +183,8 @@ function inBlacklist($word) {
 	Given  media_id, returns the text to be displayed with mark-up (special words have a link)
 */
 function howiknowit($media_id) {
+	global $db;
+
 	//Get a list of words for this document
 	$words = array();
 	$cursor = queryCollection("words", array('media_id' => $media_id));
