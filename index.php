@@ -29,18 +29,14 @@ connectDB();
 		<?php
 			$media = getMedia();
 			if(count($media) > 0) {
-				foreach($media as $title) {
-					echo "<p class='media'>".$title."</p><br />";
+				$title = "title";
+				foreach($media as $item) {
+					echo "<p class='media'>" . $item->$title . "</p><br />";
 				} 
 			} else {
 				echo "You have not added any media items yet.";
 			}
 		?>
 	</div>
-
-
-	<script type='text/javascript'>
-		
-	</script>
 </body>
 </html>
