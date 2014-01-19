@@ -30,8 +30,8 @@ connectDB();
 			$media = getMedia();
 			if(count($media) > 0) {
 				$title = "title";
-				foreach($media as $item) {
-					echo "<p class='media'>" . $item->$title . "</p><br />";
+				for($i = 0; $i < count($media); ++$i) {
+					echo "<p class='media'>" . $media[$i] . "</p><br />";
 				} 
 			} else {
 				echo "You have not added any media items yet.";
