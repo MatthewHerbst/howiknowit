@@ -204,7 +204,7 @@ function howiknowit($media_id) {
 /*
 	Given a word, returns a list of all media where the word is found
 */
-function whereIsThisWord($word, $media_id) {
+function whereIsThisWord($word) {
 	//Store the location of all the words
 	$locations = array();
 
@@ -217,7 +217,7 @@ function whereIsThisWord($word, $media_id) {
 		array_push($locations, $document);
 	}
 
-	return locations;
+	return $locations;
 }
 
 ?>
