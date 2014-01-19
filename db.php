@@ -16,6 +16,8 @@ function connectDB() {
 	$db = $connection->$DB;
 }
 
+echo "past connectdb";
+
 /*
 	Inserts the given document into the specified collection/table
 */
@@ -35,6 +37,8 @@ function insertIntoCollection($table, $document) {
 	return $result['upserted'];
 }
 
+echo "insert";
+
 /*
 	Queries the specified collection/table for documents using $q as the query
 	Returns a cursor to the query results
@@ -48,6 +52,8 @@ function queryCollection($collection, $q) {
 
 	//TODO: error check
 }
+
+echo "query";
 
 /*
 	Returns an array containing the title of each media piece
@@ -70,6 +76,8 @@ function getMedia() {
 
 	return $media;
 }
+
+echo "media";
 
 /*
 	Parses a large block of text
@@ -96,6 +104,8 @@ function parseText($media_id, $text) {
 		parseWords($media_id, $paragraph_id, $paragraphs[$i]);
 	}
 }
+
+echo "parse";
 
 /*
 	Given a paragraph, extracts important words and saves them to the database
@@ -126,6 +136,8 @@ function parseWords($media_id, $paragraph_id, $paragraph) {
 	}
 }
 
+echo "parse words";
+
 /*
 	Checks to see if a given word is in the blacklist (the list of words deemed unimportant)
 */
@@ -136,3 +148,5 @@ function inBlacklist($word) {
 	return $cursor->count() > 0;
 }
 
+echo "end";
+?>
