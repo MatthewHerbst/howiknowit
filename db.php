@@ -59,13 +59,13 @@ function getMedia() {
 	$media = array();
 
 	//Get a cursor to the documents in the media collection
-	$cursor = $db->"media"->find();
+	$cursor = $db->'media'->find();
 
 	//Iterate through all the items the cursor has access to
 	foreach($cursor as $item)
 	{
 		//Put that item into the media array
-    	array_push($media, $item->"title");
+    	array_push($media, $item->'title');
 	}
 
 	return $media;
