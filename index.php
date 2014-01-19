@@ -1,10 +1,9 @@
 <?php
-/*
 //Handle database connections
 include "db.php";
 
 //Connect to the database
-connectDB();*/
+connectDB();
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +11,6 @@ connectDB();*/
 <head>
 	<meta charset="utf-8">
 	<title>How-I-Know-It</title>
-	<script type='text/javascript' src='js/parseText.js'> </script>
 </head>
 <body>
 	<!-- Form for submitting new content which the user can then read -->
