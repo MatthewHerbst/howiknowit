@@ -181,15 +181,16 @@ function inBlacklist($word) {
 function howiknowit($media_id) {
 	//Get a list of words for this document
 	$words = array();
-	$cursor = queryCollection();
+	$cursor = queryCollection("words", array('media_id') => $media_id);
 	foreach($cursor as $doc) {
 		array_push($words, $doc);
 	}
 
-	//Get the content of the media item
-	$cursor = queryCollection("media", array('media_id' => $media_id));
-	$content = iterator_to_array($cursor);
-	
+	//Get the full content of the media item
+	$collection = "media";
+	$document = $db->$collection->findOne(array('media_id' => $media_id));
+	$content = $document['content'];
+
 	//TODO: possible risk of replacing text in one of the html tags?
 	//Go through the list of words
 	foreach($words as $word) {
