@@ -2,7 +2,7 @@
 echo "working";
 //Handle database connections
 include "db.php";
-
+echo "still working";
 //Connect to the database
 //connectDB();
 ?>
