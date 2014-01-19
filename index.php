@@ -1,4 +1,5 @@
-<?php/*
+<?php
+/*
 //Handle database connections
 include "db.php";
 
@@ -27,7 +28,8 @@ connectDB();*/
 
 	<!-- List of content that the user has submitted -->
 	<div id='mydocs'>
-		<?php/*
+		<?php
+			/*
 			$media = getMedia();
 			if(count($media) > 0) {}
 				foreach($media as $title) {
