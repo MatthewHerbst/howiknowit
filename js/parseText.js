@@ -17,11 +17,11 @@ var MongoClient = require('mongodb').MongoClient;
 	Save the media information and then parse it
 */
 function processMedia(media) {
+	//TODO: should parse media title for words too!
+
 	//Create a new entry from the media item
 	var entry = {
-					name 	: media.name,
-					info 	: media.infoString,
-					type 	: media.type,
+					title 	: media.title,
 					content : media.content
 				};
 
@@ -57,7 +57,7 @@ function parseText(media_id, text) {
 						number	 : i,
 						content	 : paragraphs[i]
 					};
-
+		
 		//Connect to the db
 		MongoClient.connect('mongodb://localhost:27017/' + db, function(err, db) {
 			if(!err) {
@@ -75,7 +75,27 @@ function parseText(media_id, text) {
 	  		}
 		});
 	}
+};
 
+/*
+	Generic method for inserting a document into the specified collection.
+	//TODO: actually use this
+*/
+function insertIntoCollection(collection, entry) {
+		//Connect to the db
+		MongoClient.connect('mongodb://localhost:27017/' + db, function(err, db) {
+			if(!err) {
+	    		console.log('Connected to ' + db);
+
+	    		//TODO: show check for insert error
+	    		var id = db.collection(collection).insert(entry);
+	    		console.log(id + ' inserted');
+
+	    		return id;
+	  		} else {
+	  			console.log('Error connecting to ' + db + '\n' + err);
+	  		}
+		});
 };
 
 /*

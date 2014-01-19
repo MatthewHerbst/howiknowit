@@ -1,6 +1,6 @@
 <?php
-$DB = 'howiknowit';
-$db;
+$DB = "howiknowit";
+$db = "";
 
 /*
 	Connect to the database
@@ -20,18 +20,93 @@ function connectDB() {
 	Inserts the given document into the specified collection/table
 */
 function insertIntoCollection($table, $document) {
+	global $db;
+
 	//Select the collection/table
 	$collection = $db->$table;
-	$collection->insert($document);
+	
+	//Perform the insert
+	$options = array("w" => 1)
+	$result = $collection->insert($document, $options);
 
 	//TODO: check for error
+
+	//Return the generated ObjectId
+	return $result['upserted'];
 }
 
 /*
-	Queries the specified collection/table for documents
+	Queries the specified collection/table for documents using $q as the query
 */
-function queryCollection($collection, $document) {
-	$cursor = $db->$collection->find();
+function queryCollection($collection, $q) {
+	global $db;
+
+	$cursor = $db->$collection->find($q);
+}
+
+/*
+	Returns an array containing the title of each media piece
+*/
+function getMedia() {
+	global $db;
+
+	//Array to store media items returned
+	$media = array();
+
+	//Get a cursor to the documents in the media collection
+	$cursor = $db->"media"->find();
+
+	//Iterate through all the items the cursor has access to
+	foreach($cursor as $item)
+	{
+		//Put that item into the media array
+    	array_push($media, $item->"title");
+	}
+
+	return $media;
+}
+
+/*
+	Parses a large block of text
+	Breaks the block in paragraphs, storing each in the database
+	Further, looks at each word in each paragraph and keep track of important words
+*/
+function parseText($media_id, $text) {
+	//Generate the paragraphs
+	$paragraphs = explode("\n\n", $text);
+
+	//Add each paragraph to the paragraph collection
+	for($i = 0; $i < count($paragraphs); ++$i) {
+		//Create the document
+		$document = array(
+							"media_id" => $media_id,
+							"location" => $i,
+							"text"	   => $paragraphs[$i];
+						 );
+
+		//Insert it into the paragraphs collection
+		$paragraph_id = insertIntoCollection("paragraphs", $document);
+
+		//Generate words from the paragraph
+		parseWords($media_id, $paragraph_id, $paragraphs[$i]);
+	}
+}
+
+/*
+	Given a paragraph, extracts important words and saves them to the database
+*/
+function parseWords($media_id, $paragraph_id, $paragraph) {
+	//Remove punctuation, then fix for extra white spaces
+	$paragraph = preg_replace("/[^\w]+/", "", $paragraph);
+	$paragraph = preg_replace("/\s{2,}/g", " ", $paragraph);
+
+	//Generate an array of all the words
+	$words = explode(" ", $paragraph);
+
+	//Go through all the words
+	for($i = 0; $i < count($words); ++$i) {
+		
+	}
 }
 
 ?>

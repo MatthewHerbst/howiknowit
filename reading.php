@@ -11,6 +11,14 @@ $title = $_REQUEST['title'];
 //Grab the content
 $content = $_REQUEST['content'];
 
+//Create a new media entry for the content
+$doc = array(
+				"title" => $title,
+				"content" => $content
+			);
+
+//Insert the media entry and get it's ObjectId
+$media_id = insertIntoCollection("media", $doc);
 
 ?>
 

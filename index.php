@@ -27,12 +27,21 @@ connectDB();
 
 	<!-- List of content that the user has submitted -->
 	<div id='mydocs'>
-
+		<?php
+			$media = getMedia();
+			if(count($media) > 0) {}
+				foreach($media as $title) {
+					echo "<p>".$title."</p>";
+				} 
+			} else {
+				echo "You have not added any media items yet.";
+			}
+		?>
 	</div>
 
 
 	<script type='text/javascript'>
-	
+		
 	</script>
 </body>
 </html>
