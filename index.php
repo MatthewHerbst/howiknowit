@@ -3,7 +3,7 @@
 include "db.php";
 
 //Connect to the database
-connectDB();
+//connectDB();
 ?>
 
 <!DOCTYPE html>
