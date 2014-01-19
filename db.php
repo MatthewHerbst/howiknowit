@@ -111,6 +111,10 @@ function parseWords($media_id, $paragraph_id, $paragraph) {
 	//Generate an array of all the words
 	$words = explode(" ", $paragraph);
 
+	foreach($words as $word) {
+		echo $word . "; ";
+	}
+
 	//Go through all the words
 	foreach($words as $word) {
 		//If the cursor into the blacklist returned no results
