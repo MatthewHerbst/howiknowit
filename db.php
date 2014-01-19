@@ -181,7 +181,7 @@ function inBlacklist($word) {
 function howiknowit($media_id) {
 	//Get a list of words for this document
 	$words = array();
-	$cursor = queryCollection("words", array('media_id') => $media_id);
+	$cursor = queryCollection("words", array('media_id' => $media_id));
 	foreach($cursor as $doc) {
 		array_push($words, $doc);
 	}
