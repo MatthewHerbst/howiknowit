@@ -5,23 +5,40 @@ include "db.php";
 //Connect to the database
 connectDB();
 
-//Grab the title
-$title = $_REQUEST['title'];
+$title = "";
+$content = "";
+$media_id = "";
+$data_received = false;
 
-//Grab the content
-$content = $_REQUEST['content'];
+if(isset($_REQUEST['title'])) {
+	//Grab the title (and make input safe)
+	$title = strip_tags($_REQUEST['title']);
 
-//Create a new media entry for the content
-$doc = array(
-				"title" => $title,
-				"content" => $content
-			);
+	if(isset($_REQUEST['content'])) {
+		//Grab the content (and make input safe)
+		$content = strip_tags($_REQUEST['content']);
 
-//Insert the media entry and get it's ObjectId
-$media_id = insertIntoCollection("media", $doc);
+		//Create a new media entry for the content
+		$doc = array(
+						"title" => $title,
+						"content" => $content
+					);
 
-//Parse the text to pull the paragraphs and the individual words
-parseText($media_id, $content);
+		//Insert the media entry and get it's ObjectId
+		$media_id = insertIntoCollection("media", $doc);
+
+		//Parse the text to pull the paragraphs and the individual words
+		parseText($media_id, $content);
+
+		//Know to print the howIKnowIt data rather than the error message
+		data_received = true;
+	} else {
+		$content = "No content data received. Please return to the <a href='index.php'>home page</a>.";
+	}
+} else {
+	$title = "No title data received. Please return to the <a href='index.php'>home page</a>.";
+	$content = "No title data received. Please return to the <a href='index.php'>home page</a>.";
+}
 
 ?>
 
@@ -44,7 +61,11 @@ parseText($media_id, $content);
 		</div>
 		<div id='text'>
 			<?php
-				echo howiknowit($media_id);
+				if(data_received) {
+					echo howiknowit($media_id);
+				} else {
+					echo $content;
+				}
 			?>
 		</div>
 	</div>
